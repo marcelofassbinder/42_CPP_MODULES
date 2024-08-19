@@ -15,12 +15,7 @@
 #define BLINK "\e[5m"
 
 class Contact{
-	private:
-		std::string firstName;
-		std::string lastName;
-		std::string nickname;
-		std::string darkestSecret;
-		std::string phoneNumber;
+	
 	public:
 		Contact();
 		~Contact();
@@ -38,6 +33,13 @@ class Contact{
 		std::string getNickname();
 		std::string getDarkestSecret();
 		std::string getPhoneNumber();
+	
+	private:
+		std::string _firstName;
+		std::string _lastName;
+		std::string _nickname;
+		std::string _darkestSecret;
+		std::string _phoneNumber;
 };
 
 int stringIsAlpha(std::string str);
