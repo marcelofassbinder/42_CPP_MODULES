@@ -16,18 +16,18 @@ void PhoneBook::addNewContact(int contacts) {
 		std::cout << BOLD BLINK YELLOW << "\nPhone Book is full!\n" << RESET BOLD YELLOW << "New contact will replace the oldest one in the list!" << RESET << std::endl;
 	contacts = contacts % 8;
 	std::cout << MAGENTA << "\nAdding new contact...\n" << RESET << std::endl;
-	this->contactList[contacts].setFirstName();
-	this->contactList[contacts].setLastName();
-	this->contactList[contacts].setNickname();
-	this->contactList[contacts].setDarkestSecret();
-	this->contactList[contacts].setPhoneNumber();
+	this->_contactList[contacts].setFirstName();
+	this->_contactList[contacts].setLastName();
+	this->_contactList[contacts].setNickname();
+	this->_contactList[contacts].setDarkestSecret();
+	this->_contactList[contacts].setPhoneNumber();
 	std::cout << BOLD GREEN << "\nNEW CONTACT ADDED" << RESET << std::endl;
 }
 
 void PhoneBook::searchContact() {
 
 	std::cout << MAGENTA << "\nSearching contacts..." << RESET << std::endl;
-	if (this->contactList[0].getFirstName().empty()) {
+	if (this->_contactList[0].getFirstName().empty()) {
 		std::cout << BOLD YELLOW << "\nNO CONTACTS FOUND" << RESET << std::endl;
 		return ;
 	}
@@ -61,10 +61,10 @@ void PhoneBook::searchContact() {
 
 int PhoneBook::displayContactList() {
 	int i = 0;
-	while (i < 8 && !this->contactList[i].getFirstName().empty()) {
-		std::string first = this->contactList[i].getFirstName();
-		std::string last = this->contactList[i].getLastName();
-		std::string nick = this->contactList[i].getNickname();
+	while (i < 8 && !this->_contactList[i].getFirstName().empty()) {
+		std::string first = this->_contactList[i].getFirstName();
+		std::string last = this->_contactList[i].getLastName();
+		std::string nick = this->_contactList[i].getNickname();
 		if (first.length() > 10) {
 			first = first.substr(0, 9);
 			first.push_back('.');
@@ -88,9 +88,9 @@ int PhoneBook::displayContactList() {
 
 void PhoneBook::displayChosenContact(int inputNumber) {
 	std::cout << MAGENTA << "\nDisplaying chosen contact...\n" << std::endl;
-	std::cout << BOLD BLUE << "FIRST NAME: " << RESET << this->contactList[inputNumber].getFirstName() << std::endl;
-	std::cout << BOLD BLUE << "LAST NAME: " << RESET << this->contactList[inputNumber].getLastName() << std::endl;
-	std::cout << BOLD BLUE << "NICKNAME: " << RESET << this->contactList[inputNumber].getNickname() << std::endl;
-	std::cout << BOLD BLUE << "DARKEST SECRET: " << RESET << this->contactList[inputNumber].getDarkestSecret() << std::endl;
-	std::cout << BOLD BLUE << "PHONE NUMBER: " << RESET << this->contactList[inputNumber].getPhoneNumber() << std::endl;
+	std::cout << BOLD BLUE << "FIRST NAME: " << RESET << this->_contactList[inputNumber].getFirstName() << std::endl;
+	std::cout << BOLD BLUE << "LAST NAME: " << RESET << this->_contactList[inputNumber].getLastName() << std::endl;
+	std::cout << BOLD BLUE << "NICKNAME: " << RESET << this->_contactList[inputNumber].getNickname() << std::endl;
+	std::cout << BOLD BLUE << "DARKEST SECRET: " << RESET << this->_contactList[inputNumber].getDarkestSecret() << std::endl;
+	std::cout << BOLD BLUE << "PHONE NUMBER: " << RESET << this->_contactList[inputNumber].getPhoneNumber() << std::endl;
 }

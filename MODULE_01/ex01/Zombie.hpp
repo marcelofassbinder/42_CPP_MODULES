@@ -15,9 +15,11 @@ class Zombie{
 		~Zombie();
 		void announce(void);
 		void setZombieName(std::string name);
+		//void setZombieId(int id);
 	
 	private:
 		std::string _name;
+		//int id;
 };
 
 #endif

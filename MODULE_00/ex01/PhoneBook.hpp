@@ -5,8 +5,7 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-	private:
-		Contact contactList[8];
+	
 	public:
 		PhoneBook();
 		~PhoneBook();
@@ -14,6 +13,9 @@ class PhoneBook {
 		void searchContact();
 		int displayContactList();
 		void displayChosenContact(int inputNumber);
+	
+	private:
+		Contact _contactList[8];
 };
 
 #endif
