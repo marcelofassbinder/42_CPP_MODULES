@@ -20,9 +20,6 @@ int main(void)
 		jim.attack();
 		club.setType("some other type of club");
 		jim.attack();
-		Weapon faca("faca");
-		jim.setWeapon(faca);
-		jim.attack();
 	}
 	return 0;
 }
