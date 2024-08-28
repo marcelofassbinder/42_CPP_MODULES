@@ -6,6 +6,9 @@ CPP_COMPILER = c++
 
 all: $(NAME)
 
+$(OBJ): $(SRC)
+	$(CPP_COMPILER) $(CPP_FLAGS) -c $(SRC)
+
 $(NAME): $(OBJ)
 	$(CPP_COMPILER) $(OBJ) $(CPP_FLAGS) -o $(NAME)
 

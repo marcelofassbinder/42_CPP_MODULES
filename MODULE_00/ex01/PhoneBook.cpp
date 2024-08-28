@@ -43,7 +43,7 @@ void PhoneBook::searchContact() {
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsDigit(input) || input.empty())
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET;
