@@ -31,10 +31,10 @@ void Harl::error(void) {
 void Harl::complain(std::string level) {
 	void (Harl::*deb)(void) = &Harl::debug;
 	void (Harl::*inf)(void) = &Harl::info;
-	void (Harl::*warn)(void) = &Harl::warning;;
+	void (Harl::*warn)(void) = &Harl::warning;
 	void (Harl::*err)(void) = &Harl::error;
 
-	void (Harl::*memberFunctions[4])() = {deb, inf, warn, err};
+	void (Harl::*memberFunctions[4])(void) = {deb, inf, warn, err};
 	std::string levelStrings[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for(int i = 0; i < 4; i++) {

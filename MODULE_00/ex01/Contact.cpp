@@ -17,7 +17,7 @@ void Contact::setFirstName() {
 		std::getline(std::cin, this->_firstName);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsAlpha(this->_firstName) || this->_firstName.empty()) 
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET << std::endl;
@@ -32,7 +32,7 @@ void Contact::setLastName() {
 		std::getline(std::cin, this->_lastName);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsAlpha(this->_lastName) || this->_lastName.empty())
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET << std::endl;
@@ -47,7 +47,7 @@ void Contact::setNickname() {
 		std::getline(std::cin, this->_nickname);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsAlpha(this->_nickname) || this->_nickname.empty())
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET << std::endl;
@@ -62,7 +62,7 @@ void Contact::setDarkestSecret() {
 		std::getline(std::cin, this->_darkestSecret);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsAlpha(this->_darkestSecret) || this->_darkestSecret.empty())
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET << std::endl;
@@ -77,7 +77,7 @@ void Contact::setPhoneNumber() {
 		std::getline(std::cin, this->_phoneNumber);
 		if (std::cin.eof()) {
 			std::cout << BOLD RED << "\nEOF received, exiting Phone Book\n" << RESET << std::endl;
-			std::exit(0);
+			exit(0);
 		}
 		if (!stringIsDigit(this->_phoneNumber) || this->_phoneNumber.empty())
 			std::cout << BOLD RED << "\nInvalid input, please try again\n" << RESET << std::endl;
@@ -107,7 +107,7 @@ std::string Contact::getPhoneNumber() {
 }
 
 int stringIsAlpha(std::string str) {
-	for (int i = 0; i < str.length(); i++) {
+	for (unsigned long i = 0; i < str.length(); i++) {
 		if (!std::isalpha(str[i]) && !std::isspace(str[i]))
 			return (0);
 	}
@@ -115,8 +115,8 @@ int stringIsAlpha(std::string str) {
 }
 
 int stringIsDigit(std::string str) {
-	for (int i = 0; i < str.length(); i++) {
-		if (!std::isdigit(str[i]) && !std::isspace(str[i]))
+	for (unsigned long i = 0; i < str.length(); i++) {
+		if (!std::isdigit(str[i]) && !std::isspace(str[i]) && str[i] != '+')
 			return (0);
 	}
 	return (1);

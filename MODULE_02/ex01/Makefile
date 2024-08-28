@@ -1,6 +1,6 @@
-SRC = Account.cpp tests.cpp
-NAME = account
-OBJ = Account.o tests.o
+SRC = Fixed.cpp main.cpp
+NAME = fixed
+OBJ = Fixed.o main.o
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 CPP_COMPILER = c++ 
 
