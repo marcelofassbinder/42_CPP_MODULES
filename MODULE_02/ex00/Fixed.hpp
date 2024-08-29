@@ -6,8 +6,8 @@
 class Fixed {
 
 	private:
-		int fixedPoint;
-		static const int fractionalBits;
+		int _fixedPoint;
+		static const int _fractionalBits;
 	
 	public:
 		//ORTHODOX CANONICAL FORM
