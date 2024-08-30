@@ -50,9 +50,9 @@ void Fixed::setRawBits(int const raw) {
 }
 
 // - - - - - OPERATOR "<<" OVERLOAD - - - - - -
-std::ostream &operator<<(std::ostream &o, const Fixed &f) {
-	o << f.toFloat();
-	return o;
+std::ostream &operator<<(std::ostream &output, const Fixed &f) {
+	output << f.toFloat();
+	return output;
 }
 
 // - - - - - COMPARISON OPERATORS - - - - - 

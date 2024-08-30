@@ -47,9 +47,7 @@ void Fixed::setRawBits(int const raw) {
 	this->_fixedPoint = raw << Fixed::_fractionalBits;
 }
 
-std::ostream &operator<<(std::ostream &o, const Fixed &f) {
-	o << f.toFloat();
-	return o;
+std::ostream &operator<<(std::ostream &output, const Fixed &f) {
+	output << f.toFloat();
+	return output;
 }
-
-

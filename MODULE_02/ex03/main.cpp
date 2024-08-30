@@ -5,7 +5,7 @@ int main(void) {
 	Point b(2.0f, 0.0f);
 	Point c(0.0f, 2.0f);
 
-	Point check(0.8f, 0.8f);
+	Point check(1.0f, 1.0f);
 
 	bool inside = bsp(a, b, c, check);
 	std::cout << "the point " << check << " is inside the triangle formed by ";
