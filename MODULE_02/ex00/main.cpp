@@ -2,15 +2,10 @@
 
 int main(void) {
 
-	Fixed a;
-	
-	//a.setRawBits(5);
-	
+	Fixed a;	
 	Fixed b(a);
 	Fixed c;
 	
-	//b.setRawBits(14);
-
 	c = b;
 
 	std::cout << a.getRawBits() << std::endl;

@@ -6,8 +6,8 @@
 class Point {
 
 	private:
-		Fixed _x;
-		Fixed _y;
+		const Fixed _x;
+		const Fixed _y;
 
 	public:
 		//CANONICAL FORM
@@ -17,7 +17,10 @@ class Point {
 		Point &operator=(const Point&);
 		~Point();
 
+		//OPERATOR "==" OVERLOAD
 		bool operator==(const Point&) const;
+		
+		//MEMBER FUNCTIONS
 		Fixed getX() const;
 		Fixed getY() const;
 		Fixed getArea(Point, Point) const;
