@@ -4,32 +4,32 @@ const int Fixed::_fractionalBits = 8;
 
 // - - - - - - CANONICAL FORM - - - - - -
 Fixed::Fixed() : _fixedPoint(0) {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int i) {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = i * (1 << Fixed::_fractionalBits);
 }
 
 Fixed::Fixed(const float f) {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	this->_fixedPoint = roundf(f * (1 << Fixed::_fractionalBits));
 }
 
 Fixed::Fixed(const Fixed &f) {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = f;
 }
 
 Fixed& Fixed::operator=(const Fixed &f) {
-	std::cout << "Copy assignment operator called" << std::endl;
+	//std::cout << "Copy assignment operator called" << std::endl;
 	this->_fixedPoint = f.getRawBits();
 	return (*this);
 }
 
 Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 // - - - - - - MEMBER FUNCTIONS - - - - -
@@ -82,19 +82,27 @@ bool Fixed::operator!=(const Fixed &src) {
 
 // - - - - - ARITHMETIC OPERATORS - - - - - 
 Fixed Fixed::operator+(const Fixed &src) {
-	return(this->toFloat() + src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits(this->getRawBits() + src.getRawBits());
+	return(newInstance);
 }
 
 Fixed Fixed::operator-(const Fixed &src) {
-	return(this->toFloat() - src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits(this->getRawBits() - src.getRawBits());
+	return(newInstance);
 }
 
 Fixed Fixed::operator*(const Fixed &src) {
-	return(this->toFloat() * src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits((this->toFloat() * src.toFloat()) * (1 << Fixed::_fractionalBits));
+	return(newInstance);
 }
 
 Fixed Fixed::operator/(const Fixed &src) {
-	return(this->toFloat() / src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits((this->toFloat() / src.toFloat()) * (1 << Fixed::_fractionalBits));
+	return(newInstance);
 }
 
 // - - - - - INCREMENT/DECREMENT OPERATORS - - - - - 
