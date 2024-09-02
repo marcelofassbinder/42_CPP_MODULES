@@ -82,19 +82,27 @@ bool Fixed::operator!=(const Fixed &src) {
 
 // - - - - - ARITHMETIC OPERATORS - - - - - 
 Fixed Fixed::operator+(const Fixed &src) {
-	return(this->toFloat() + src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits(this->getRawBits() + src.getRawBits());
+	return(newInstance);
 }
 
 Fixed Fixed::operator-(const Fixed &src) {
-	return(this->toFloat() - src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits(this->getRawBits() - src.getRawBits());
+	return(newInstance);
 }
 
 Fixed Fixed::operator*(const Fixed &src) {
-	return(this->toFloat() * src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits((this->toFloat() * src.toFloat()) * (1 << Fixed::_fractionalBits));
+	return(newInstance);
 }
 
 Fixed Fixed::operator/(const Fixed &src) {
-	return(this->toFloat() / src.toFloat());
+	Fixed newInstance;
+	newInstance.setRawBits((this->toFloat() / src.toFloat()) * (1 << Fixed::_fractionalBits));
+	return(newInstance);
 }
 
 // - - - - - INCREMENT/DECREMENT OPERATORS - - - - - 
