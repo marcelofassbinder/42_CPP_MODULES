@@ -1,6 +1,6 @@
-SRC = AAnimal.cpp Cat.cpp Dog.cpp Wrong.cpp Brain.cpp main.cpp
-NAME = brain
-OBJ = AAnimal.o Cat.o Dog.o Wrong.o Brain.o main.o
+SRC = AMateria.cpp Character.cpp Ice.cpp main.cpp
+NAME = materia
+OBJ = AMateria.o Character.o Ice.o main.o
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g 
 CPP_COMPILER = c++ 
 

@@ -4,9 +4,9 @@
 DiamondTrap::DiamondTrap() {
 
 	std::cout << YELLOW << "DiamondTrap-> Default constructor called" << RESET << std::endl;
-	this->_hitPoints = FragTrap::_hitPoints;
-	this->_energyPoints = ScavTrap::_energyPoints;
-	this->_attackDamage = FragTrap::_attackDamage;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 30;
 
 }
 
@@ -14,9 +14,9 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name") {
 
 	std::cout << YELLOW << "DiamondTrap-> Parametrized constructor called for " <<  name << RESET << std::endl;
 	this->_name = name;
-	this->_hitPoints = FragTrap::_hitPoints;
-	this->_energyPoints = ScavTrap::_energyPoints;
-	this->_attackDamage = FragTrap::_attackDamage;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 30;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &src) {
@@ -27,13 +27,14 @@ DiamondTrap::DiamondTrap(const DiamondTrap &src) {
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &src) {
 	
-	std::cout << YELLOW << "DiamondTrap-> Copy operator assignment called" << RESET << std::endl;
-	this->ClapTrap::_name = src.ClapTrap::_name;
-	this->_name = src._name;
-	this->_hitPoints = src._hitPoints;
-	this->_energyPoints = src._energyPoints;
-	this->_attackDamage = src._attackDamage;
-
+	if (this != &src) {
+		std::cout << YELLOW << "DiamondTrap-> Copy operator assignment called" << RESET << std::endl;
+		this->ClapTrap::_name = src.ClapTrap::_name;
+		this->_name = src._name;
+		this->_hitPoints = src._hitPoints;
+		this->_energyPoints = src._energyPoints;
+		this->_attackDamage = src._attackDamage;
+	}
 	return (*this);
 }
 

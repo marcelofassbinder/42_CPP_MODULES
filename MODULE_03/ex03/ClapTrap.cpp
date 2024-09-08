@@ -16,11 +16,14 @@ ClapTrap::ClapTrap(const ClapTrap &src) {
 
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &src) {
-	std::cout << BLUE << "ClapTrap-> Copy assignment operator called" << RESET << std::endl;
-	this->_name = src._name;
-	this->_hitPoints = src._hitPoints;
-	this->_energyPoints = src._energyPoints;
-	this->_attackDamage = src._attackDamage;
+
+	if (this != &src) {
+		std::cout << BLUE << "ClapTrap-> Copy assignment operator called" << RESET << std::endl;
+		this->_name = src._name;
+		this->_hitPoints = src._hitPoints;
+		this->_energyPoints = src._energyPoints;
+		this->_attackDamage = src._attackDamage;
+	}
 	return (*this);
 }
 
@@ -97,4 +100,13 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	else if (this->_energyPoints <= 0){
 		std::cout << BOLD BLINK << this->_name << " has no energy points left to be repaired!" << RESET << std::endl;
 	}
+}
+
+void ClapTrap::displayInfo() {
+	std::cout << std::endl;
+	std::cout << BOLD << this->_name << " INFOS:" << std::endl;
+	std::cout << "HIT POINTS = " << this->_hitPoints << std::endl;
+	std::cout << "ENERGY POINTS = " << this->_energyPoints << std::endl;
+	std::cout << "ATTACK DAMAGE = " << this->_attackDamage << std::endl;
+	std::cout << RESET << std::endl;
 }

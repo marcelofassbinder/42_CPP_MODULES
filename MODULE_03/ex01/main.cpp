@@ -1,29 +1,40 @@
 #include "ScavTrap.hpp"
 
 int main(void) {
-	ScavTrap chitao("CHITAOZINHO");
-	ScavTrap xororo("XORORO");
+	{
+		std::cout << BOLD "\n - - - - REGULAR TESTS - - - - \n" RESET << std::endl;
+		ScavTrap chitao("CHITAOZINHO");
+		ScavTrap xororo("XORORO");
 
-	chitao.attack("XORORO");
-	xororo.takeDamage(20);
-	xororo.beRepaired(40);
-	xororo.guardGate();
+		chitao.attack("XORORO");
+		xororo.takeDamage(chitao.getAttack());
+		xororo.beRepaired(40);
+		xororo.guardGate();
 
-	//make chitaozinho die
-	/* for (int i = 0; i < 5; i++) {
-		xororo.attack(chitao.getName());
-		chitao.takeDamage(xororo.getAttack());
-	} */
+		chitao.displayInfo();
+		xororo.displayInfo();
+	}
+	{
+		std::cout << BOLD "\n - - - - KILL CHITAOZINHO - - - - \n" RESET << std::endl;
+		ScavTrap chitao("CHITAOZINHO");
+		ScavTrap xororo("XORORO");
 
-	//test what happens if scavtrap has no energy points
-	/* for(int i = 0; i < 51; i++) {
-		a.attack("josmar");
-	} */
+		for (int i = 0; i < 5; i++) {
+			xororo.attack(chitao.getName());
+			chitao.takeDamage(xororo.getAttack());
+		}
+		chitao.displayInfo();
+		xororo.displayInfo();
+	}
+	{
+		std::cout << BOLD "\n - - - - NO ENERGY POINTS - - - - \n" RESET << std::endl;
+		ScavTrap chitao("CHITAOZINHO");
+		ScavTrap xororo("XORORO");
 
-	//test what happens if scavtrap has no hit points
-	/* chitao.takeDamage(100);
-	chitao.attack("josmar");
-	chitao.beRepaired(50);
-	chitao.takeDamage(50); */
-
+		for(int i = 0; i < 51; i++) {
+			chitao.attack("XORORO");
+		}
+		chitao.displayInfo();
+		xororo.displayInfo();
+	}
 }

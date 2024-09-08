@@ -22,11 +22,14 @@ FragTrap::FragTrap(const FragTrap &src) {
 }
 
 FragTrap& FragTrap::operator=(const FragTrap &src) {
-	std::cout << CYAN << "FragTrap-> Copy asssignment operator called" << RESET << std::endl;
-	this->_name = src._name;
-	this->_hitPoints = src._hitPoints;
-	this->_energyPoints = src._energyPoints;
-	this->_attackDamage = src._attackDamage;
+
+	if (this != &src) {
+		std::cout << CYAN << "FragTrap-> Copy asssignment operator called" << RESET << std::endl;
+		this->_name = src._name;
+		this->_hitPoints = src._hitPoints;
+		this->_energyPoints = src._energyPoints;
+		this->_attackDamage = src._attackDamage;
+	}
 	return (*this);
 }
 
