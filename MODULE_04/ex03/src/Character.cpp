@@ -1,7 +1,10 @@
-#include "Character.hpp"
+#include "../includes/Character.hpp"
 
 Character::Character() {
 	std::cout << "Character-> Default constructor called" << std::endl;
+	for(int i = 0; i < 4; i++) {
+		this->_inventory[i] = NULL;
+	}
 }
 
 Character::Character(std::string const &name) : _name(name){
@@ -62,15 +65,20 @@ void Character::equip(AMateria *m) {
 		if (this->checkMateriaInInventory(*m)) {
 			std::cout << m->getType() << " already exists in the inventory!" << std::endl;
 		}
+		else if (m->isEquiped == true) {
+			std::cout << m->getType() << "is being equiped by another character!" << std::endl;
+		}
 		else {
 			this->_inventory[i] = m;
 			std::cout << m->getType() << " added to " << this->getName() << "'s inventory" << std::endl;
+			m->isEquiped = true;
 		}
 	}
 }
 
 void Character::unequip(int idx) {
 
+	Floor *floor = Floor::getInstance();
 	AMateria *toUnequip = this->_inventory[idx];
 	if (idx < 0 || idx > 3)
 		std::cout << "The inventory contains 4 slots. Please input a number from 0 to 3!" << std::endl;
@@ -79,7 +87,7 @@ void Character::unequip(int idx) {
 	else {
 		this->_inventory[idx] = NULL;
 		std::cout << toUnequip->getType() << " left on the floor by " << this->getName() << std::endl;
-		this->addToGarbage(toUnequip);
+		floor->leaveMateriaAtFloor(toUnequip);
 	}
 }
 

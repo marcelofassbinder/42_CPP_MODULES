@@ -1,4 +1,4 @@
-#include "Ice.hpp"
+#include "../includes/Ice.hpp"
 
 Ice::Ice() {
 	this->_type = "ice";
@@ -9,9 +9,7 @@ Ice::Ice(const Ice &src) {
 }
 
 Ice& Ice::operator=(const Ice &src) {
-	if (this != &src) {
-		this->_type = src._type;
-	}
+	(void) src;
 	return (*this);
 }
 

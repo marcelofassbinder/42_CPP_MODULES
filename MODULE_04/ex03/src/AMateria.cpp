@@ -1,8 +1,9 @@
-#include "AMateria.hpp"
+#include "../includes/AMateria.hpp"
 
-AMateria::AMateria() {}
+AMateria::AMateria() : isEquiped(false) {
+}
 
-AMateria::AMateria(std::string const &type) : _type(type) {
+AMateria::AMateria(std::string const &type) : _type(type), isEquiped(false) {
 }
 
 AMateria::AMateria(const AMateria &src) {
