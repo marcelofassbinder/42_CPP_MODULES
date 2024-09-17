@@ -2,6 +2,7 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "Floor.hpp"
 
 class Character : public ICharacter {
 
