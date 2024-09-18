@@ -1,13 +1,12 @@
 #include "../includes/AMateria.hpp"
 
-AMateria::AMateria() : isEquiped(false) {
+AMateria::AMateria() : isEquiped(false), atFloor(false) {
 }
 
-AMateria::AMateria(std::string const &type) : _type(type), isEquiped(false) {
+AMateria::AMateria(std::string const &type) : _type(type), isEquiped(false), atFloor(false) {
 }
 
-AMateria::AMateria(const AMateria &src) {
-	*this = src;
+AMateria::AMateria(const AMateria &src) : _type(src._type), isEquiped(false), atFloor(false) {
 }
 
 AMateria& AMateria::operator=(const AMateria &src) {

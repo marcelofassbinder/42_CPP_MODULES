@@ -40,7 +40,7 @@ int main() {
 		Animal *a = new Dog();
 		Animal *b = a;
 		Dog c;
-		Animal *d = &c;
+		Animal *d = new Dog(c);
 		//Dog *c = new Animal();// erro de compilacao
 		
 		std::cout << "a->getType() -> " << a->getType() << std::endl;
@@ -53,9 +53,10 @@ int main() {
 		b->makeSound();
 		std::cout << "c.makeSound() -> ";
 		c.makeSound();
-		std::cout << "d->makeSound() -> ";
+		std::cout << "d.makeSound() -> ";
 		d->makeSound();
 
 		delete(a);
+		delete(d);
 	}
 }

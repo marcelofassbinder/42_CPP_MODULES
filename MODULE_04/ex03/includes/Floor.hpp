@@ -7,7 +7,7 @@
 class AMateria;
 
 typedef struct s_ListOfMaterias{
-	AMateria *current;
+	AMateria *content;
 	s_ListOfMaterias *next;
 }				ListOfMaterias;
 
@@ -31,7 +31,8 @@ class Floor {
 		ListOfMaterias *getMateriasAtFloor() const;
 		void	leaveMateriaAtFloor(AMateria *m);
 		void	displayFloor();
-		void	cleanFloor();
+		void	cleanFloor(AMateria *m);
+		void	cleanFloorMaterias();
 };
 
 #endif

@@ -15,7 +15,7 @@
 class Animal {
 
 	protected:
-		std::string type;
+		std::string _type;
 	
 	public:
 		Animal();
@@ -23,7 +23,7 @@ class Animal {
 		Animal& operator=(const Animal &);
 		virtual ~Animal(); //Destrutor deve ser virtual para que o destrutor correto seja chamado quando ha polimorfismo
 		
-		virtual void makeSound() const; //funcao deve ser virtual para que o programa entenda qual makeSound chamar para ponteiros/ref. para classes derivadas de Animal
+		virtual void makeSound() const; //funcao deve ser virtual para que o programa entenda qual makeSound chamar para ponteiros/ref. de classes derivadas de Animal
 		std::string getType() const;
 	
 };

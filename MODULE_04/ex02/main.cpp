@@ -54,4 +54,25 @@ int main() {
 		//TRY TO INSTANTIATE AN AANIMAL
 		//AAnimal a; 
 	}
+	{
+		std::cout << BOLD " - - - - DEEP COPY TEST - - - - \n" RESET << std::endl;
+		
+		Cat *a = new Cat;
+		a->setBrainIdea("miau");
+		
+		Cat *temp = new Cat;
+		*temp = *a;
+		temp->displayBrainIdeas();
+		temp->setBrainIdea("ratosssss");
+		
+		a->displayBrainIdeas();
+		Cat *b = new Cat(*a);
+		b->setBrainIdea("whiskassss");
+		
+		b->displayBrainIdeas();
+
+		delete(a);
+		delete(b);
+		delete(temp);
+	}
 }

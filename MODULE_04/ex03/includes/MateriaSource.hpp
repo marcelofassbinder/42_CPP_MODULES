@@ -3,10 +3,10 @@
 
 #include "IMateriaSource.hpp"
 
-class MateriaSource : IMateriaSource {
+class MateriaSource : public IMateriaSource {
 
 	private:
-		AMateria *source[4];
+		AMateria *_source[4];
 
 	public:
 		MateriaSource();
@@ -16,6 +16,7 @@ class MateriaSource : IMateriaSource {
 
 		void learnMateria(AMateria*);
 		AMateria* createMateria(std::string const &type);
+		void copySource(const MateriaSource&);
 };
 
 #endif

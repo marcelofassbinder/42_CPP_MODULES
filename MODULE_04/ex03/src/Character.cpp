@@ -15,9 +15,12 @@ Character::Character(std::string const &name) : _name(name){
 	
 }
 
-Character::Character(const Character &src) {
+Character::Character(const Character &src) : _name(src._name) {
 	std::cout << "Character-> Copy constructor called" << std::endl;
-	*this = src;
+	for(int i = 0; i < 4; i++) {
+		this->_inventory[i] = NULL;
+	}
+	this->copyInventory(src);
 }
 
 Character& Character::operator=(const Character &src) {
@@ -30,7 +33,7 @@ Character& Character::operator=(const Character &src) {
 }
 
 Character::~Character() {
-	std::cout << "Character-> Destructor called" << std::endl;
+	std::cout << "Character " << this->getName() << " -> Destructor called" << std::endl;
 	int i = 0;
 	while (this->_inventory[i]) {
 		delete(this->_inventory[i]);
@@ -44,8 +47,9 @@ void Character::copyInventory(const Character &src) {
 		delete(this->_inventory[i]);
 		i++;
 	}
-	for(int i = 0; i < 4; i++) {
+	while (src._inventory[i]) {
 		this->_inventory[i] = src._inventory[i]->clone();
+		i++;
 	}
 }
 
@@ -55,7 +59,9 @@ std::string const& Character::getName() const {
 
 void Character::equip(AMateria *m) {
 	int i = 0;
-
+	
+	if (!m)
+		return ;
 	while(this->_inventory[i]) {
 		i++;
 	}
@@ -66,9 +72,11 @@ void Character::equip(AMateria *m) {
 			std::cout << m->getType() << " already exists in the inventory!" << std::endl;
 		}
 		else if (m->isEquiped == true) {
-			std::cout << m->getType() << "is being equiped by another character!" << std::endl;
+			std::cout << m->getType() << " has already been equiped by another character!" << std::endl;
 		}
 		else {
+			if (m->atFloor == true)
+				Floor::getInstance()->cleanFloor(m);
 			this->_inventory[i] = m;
 			std::cout << m->getType() << " added to " << this->getName() << "'s inventory" << std::endl;
 			m->isEquiped = true;
@@ -91,13 +99,6 @@ void Character::unequip(int idx) {
 	}
 }
 
-void Character::addToGarbage(AMateria *m) { //mudar garbage para "floor" - criar uma classe singleton(que utiliza apenas uma instancia no programa inteiro, de forma com que as materias desequipadas possam ser equipadas por outros players)
-	int i = 0;
-	while(this->garbage[i])
-		i++;
-	this->garbage[i] = m;
-}
-
 void Character::use(int idx, ICharacter &target) {
 	AMateria *toUse = this->_inventory[idx];
 	
@@ -110,19 +111,12 @@ void Character::use(int idx, ICharacter &target) {
 		toUse->use(target);
 }
 
-void Character::displayInfo() {
-	std::cout << this->getName() << " INFOS:\n" << std::endl;
+void Character::displayInventory() {
+	std::cout << this->getName() << "'s INVENTORY:" << std::endl;
 
-	std::cout << "Inventory:" << std::endl;
 	for (int i = 0; i < 4; i++) {
 		if (this->_inventory[i])
 			std::cout << "Item " << i + 1 <<": " << this->_inventory[i]->getType() << std::endl;
-	}
-	std::cout << "Garbage:" << std::endl;
-	int i = 0;
-	while (this->garbage[i]) {
-		std::cout << "Item " << i + 1 <<": " << this->garbage[i]->getType() << std::endl;
-		i++;
 	}
 }
 

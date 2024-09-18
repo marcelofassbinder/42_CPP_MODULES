@@ -1,22 +1,23 @@
 #include "Dog.hpp"
 
-Dog::Dog(){
+Dog::Dog() : AAnimal() {
 	std::cout << BLUE << "Dog-> Default constructor called" << RESET << std::endl;
 	this->brain = new Brain();
-	this->type = "Dog";
+	this->_type = "Dog";
 }
 
-Dog::Dog(const Dog &src) {
+Dog::Dog(const Dog &src) : AAnimal(src) {
 	std::cout << BLUE << "Dog-> Copy constructor called" << RESET << std::endl;
-	*this = src;
+	this->brain = new Brain(*src.brain);
 }
 
 Dog& Dog::operator=(const Dog &src) {
 	
 	if (this != &src) {
-		std::cout << BLUE << "Dog-> Copy operator assignment called" << RESET << std::endl;
-		this->brain = src.brain;
-		this->type = src.type;
+		std::cout << CYAN << "Dog-> Copy operator assignment called" << RESET << std::endl;
+		AAnimal::operator=(src);
+		delete(this->brain);
+		this->brain = new Brain(*src.brain);
 	}
 	return (*this);
 }

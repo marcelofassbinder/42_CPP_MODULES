@@ -15,7 +15,7 @@ int main() {
 		}
 	}
 	{
-		std::cout << BOLD " - - - - ADD IDEAS TO BRAIN - - - - \n" RESET << std::endl;
+		std::cout << BOLD "\n - - - - ADD IDEAS TO BRAIN - - - - \n" RESET << std::endl;
 		Cat *cat = new Cat();
 		Dog *dog = new Dog();
 
@@ -49,5 +49,26 @@ int main() {
 			a.setBrainIdea("new idea");
 		}
 		a.displayBrainIdeas();
+	}
+	{
+		std::cout << BOLD " - - - - DEEP COPY TEST - - - - \n" RESET << std::endl;
+		
+		Cat *a = new Cat;
+		a->setBrainIdea("miau");
+		
+		Cat *temp = new Cat;
+		*temp = *a;
+		temp->displayBrainIdeas();
+		temp->setBrainIdea("ratosssss");
+		
+		a->displayBrainIdeas();
+		Cat *b = new Cat(*a);
+		b->setBrainIdea("whiskassss");
+		
+		b->displayBrainIdeas();
+
+		delete(a);
+		delete(b);
+		delete(temp);
 	}
 }
