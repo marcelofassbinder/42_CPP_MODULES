@@ -10,10 +10,7 @@ class Character : public ICharacter {
 		AMateria*	_inventory[4];
 		std::string	_name;
 
-	public:
-
-		AMateria** garbage;
-
+	public: 
 		//CANONICAL FORM
 		Character();
 		Character(std::string const &name);
@@ -27,8 +24,7 @@ class Character : public ICharacter {
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);
 		void copyInventory(const Character&);
-		void displayInfo();
-		void addToGarbage(AMateria *m);
+		void displayInventory();
 		bool checkMateriaInInventory(const AMateria&);
 };
 

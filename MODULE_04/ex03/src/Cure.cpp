@@ -1,11 +1,10 @@
 #include "../includes/Cure.hpp"
 
-Cure::Cure() {
+Cure::Cure() : AMateria() {
 	this->_type = "cure";
 }
 
-Cure::Cure(const Cure &src) {
-	*this = src;
+Cure::Cure(const Cure &src) : AMateria(src) {
 }
 
 Cure& Cure::operator=(const Cure &src) {

@@ -7,7 +7,7 @@ Brain::Brain() {
 
 Brain::Brain(const Brain &src) {
 	std::cout << "Brain-> Copy constructor called" << std::endl;
-	*this = src;
+	this->copyIdeas(src);
 }
 
 Brain& Brain::operator=(const Brain &src) {
@@ -38,7 +38,7 @@ void	Brain::setIdea(std::string newIdea) {
 
 	int i = 0;
 
-	while(!this->ideas[i].empty()){
+	while(i < 100 && !this->ideas[i].empty()){
 		i++;
 	}
 	if (i < 100){

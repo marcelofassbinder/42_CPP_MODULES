@@ -1,20 +1,18 @@
 #include "AAnimal.hpp"
 
-AAnimal::AAnimal(){
+AAnimal::AAnimal() : _type("Default AAnimal") {
 	std::cout << YELLOW <<"AAnimal-> Default constructor called" << RESET << std::endl;
-	this->type = "Default AAnimal";
 }
 
-AAnimal::AAnimal(const AAnimal &src) {
+AAnimal::AAnimal(const AAnimal &src) : _type(src._type) {
 	std::cout << YELLOW <<"AAnimal-> Copy constructor called" << RESET << std::endl;
-	*this = src;
 }
 
 AAnimal& AAnimal::operator=(const AAnimal &src) {
 	
 	if (this != &src) {
 		std::cout << YELLOW <<"AAnimal-> Copy operator assignment called" << RESET << std::endl;
-		this->type = src.type;
+		(void) src;
 	}
 	return (*this);
 }
@@ -28,5 +26,5 @@ void AAnimal::makeSound() const{
 }
 
 std::string AAnimal::getType() const {
-	return (this->type);
+	return (this->_type);
 }

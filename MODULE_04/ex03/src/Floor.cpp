@@ -39,19 +39,21 @@ void Floor::leaveMateriaAtFloor(AMateria *m) {
 	temp = this->materiasAtFloor;
 	if (!temp) {
 		temp = new ListOfMaterias;
-		temp->current = m;
+		temp->content = m;
 		temp->next = NULL;
 		this->materiasAtFloor = temp;
 		m->isEquiped = false;
+		m->atFloor = true;
 		return ;
 	}
 	while(temp->next){
 		temp = temp->next;
 	}
 	temp->next = new ListOfMaterias;
-	temp->next->current = m;
+	temp->next->content = m;
 	temp->next->next = NULL;
 	m->isEquiped = false;
+	m->atFloor = true;
 }
 
 void	Floor::displayFloor(){
@@ -62,21 +64,44 @@ void	Floor::displayFloor(){
 	int i = 1;
 	temp = this->materiasAtFloor;
 	while(temp) {
-		std::cout << i << "-> " << temp->current->getType() << std::endl; 
+		std::cout << i << "-> " << temp->content->getType() << std::endl; 
 		temp = temp->next;
 		i++;
 	}
 }
 
-void	Floor::cleanFloor(){
+void	Floor::cleanFloor(AMateria *m){
+
+	ListOfMaterias *temp;
+	ListOfMaterias *toDelete;
+
+	temp = this->materiasAtFloor;
+	if (temp->content == m)
+	{
+		this->materiasAtFloor = temp->next;
+		delete (temp);
+		return ;
+	}
+	while(temp->next) {
+		if (temp->next->content == m) {
+			toDelete = temp->next;
+			temp->next = temp->next->next;
+			delete (toDelete);
+			return ;
+		}
+		temp = temp->next;
+	}
+}
+
+void Floor::cleanFloorMaterias() {
 	
 	ListOfMaterias *temp;
 
 	while(this->materiasAtFloor) {
 		temp = this->materiasAtFloor;
-		delete(temp->current);
+		delete(temp->content);
 		this->materiasAtFloor = this->materiasAtFloor->next;
 		delete(temp);
 	}
-	delete(this);
+	delete (this);
 }

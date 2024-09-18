@@ -3,17 +3,18 @@
 //WRONG ANIMAL FUNCTIONS
 WrongAnimal::WrongAnimal(){
 	std::cout << RED << "WrongAnimal-> Default constructor called" << RESET << std::endl;
-	this->type = "Default WrongAnimal";
+	this->_type = "Default WrongAnimal";
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &src) {
+WrongAnimal::WrongAnimal(const WrongAnimal &src) : _type(src._type){
 	std::cout << RED << "WrongAnimal-> Copy constructor called" << RESET << std::endl;
-	*this = src;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal &src) {
-	std::cout << RED << "WrongAnimal-> Copy operator assignment called" << RESET << std::endl;
-	this->type = src.type;
+	if (this != &src) {
+		std::cout << RED << "WrongAnimal-> Copy operator assignment called" << RESET << std::endl;
+		(void) src;
+	}
 	return (*this);
 }
 
@@ -26,23 +27,24 @@ void WrongAnimal::makeSound() const{
 }
 
 std::string WrongAnimal::getType() const {
-	return (this->type);
+	return (this->_type);
 }
 
 //WRONG CAT FUNCTIONS
-WrongCat::WrongCat(){
+WrongCat::WrongCat() : WrongAnimal() {
 	std::cout << "WrongCat-> Default constructor called" << std::endl;
-	this->type = "WrongCat";
+	this->_type = "WrongCat";
 }
 
-WrongCat::WrongCat(const WrongCat &src) {
+WrongCat::WrongCat(const WrongCat &src) : WrongAnimal(src) {
 	std::cout << "WrongCat-> Copy constructor called" << std::endl;
-	*this = src;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat &src) {
-	std::cout << "WrongCat-> Copy operator assignment called" << std::endl;
-	this->type = src.type;
+	if (this != &src) {
+		std::cout << RED << "WrongCat-> Copy operator assignment called" << RESET << std::endl;
+		WrongAnimal::operator=(src);
+	}
 	return (*this);
 }
 
