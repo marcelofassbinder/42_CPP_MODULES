@@ -46,7 +46,7 @@ int floorTest(void) {
 	kenan->unequip(1);
 
 	kel->equip(cure);
-	kel->use(0, *kenan);
+	kel->use(0, *kel);
 
 	floor->displayFloor();
 	floor->cleanFloorMaterias();
@@ -56,23 +56,23 @@ int floorTest(void) {
 	return 0;
 }
 
-int main() {
-	//subjectTest();
-	floorTest();
-	/* AMateria *ice = new Ice;
-	AMateria *cure = new Cure;
-	Character *bob = new Character("bob");
-
-	bob->equip(ice);
-	bob->equip(cure);
-
-	Character *dylan = new Character("dylan");
-	dylan->equip(ice);
-
-	*dylan = *bob;
-	dylan->displayInventory();
-
-	delete bob;
-	delete dylan; */
+int unexistingMateriaTest(void) {
+	std::cout << BOLD "\n - - - - UNEXISTING MATERIA TEST - - - - \n" RESET << std::endl;
+	ICharacter* kenan = new Character("Kenan");
+	AMateria* ice = NULL;
 	
+	kenan->equip(ice);
+	kenan->use(0, *kenan);
+	kenan->use(1, *kenan);
+	kenan->unequip(0);
+
+	delete(kenan);
+
+	return 0;
+}
+
+int main() {
+	subjectTest();
+	floorTest();
+	unexistingMateriaTest();	
 }
