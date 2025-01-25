@@ -1,0 +1,63 @@
+#include "Bureaucrat.hpp"
+
+int main(){
+{
+	std::cout << BOLD YELLOW << "Testing CORRECT constructions..." << RESET << std::endl;
+	try {
+		Bureaucrat a("luisito suarez", 1);
+		Bureaucrat b("carlitos tevez", 87);
+		Bureaucrat c("samuel etoo", 150);
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << c << std::endl;
+	}
+	catch(std::exception& e) {
+		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+	}
+}
+std::cout << std::endl;
+{
+	std::cout << BOLD YELLOW << "Testing OUT OF RANGE constructions..." << RESET << std::endl;
+	try {
+		Bureaucrat a("luisito suarez", 0);
+	}
+	catch(std::exception& e) {
+		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+	}
+	try {
+		Bureaucrat b("carlitos tevez", 152);
+	}
+	catch(std::exception &e) {
+		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+	}
+}
+std::cout << std::endl;
+{
+	std::cout << BOLD YELLOW << "Testing INCREMENT EXCEPTIONS..." << RESET << std::endl;
+	try {
+		Bureaucrat a("superman", 15);
+		std::cout << a << std::endl;
+		for (int i = 0; i < 20; i++) {
+			a.incrementGrade();
+		}
+	}
+	catch(std::exception& e) {
+		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+	}
+}
+std::cout << std::endl;
+{
+	std::cout << BOLD YELLOW << "Testing DECREMENT EXCEPTIONS..." << RESET << std::endl;
+	try {
+		Bureaucrat a("spiderman", 140);
+		std::cout << a << std::endl;
+		for (int i = 0; i < 20; i++) {
+			a.decrementGrade();
+		}
+	}
+	catch(std::exception& e) {
+		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+	}
+}
+}
