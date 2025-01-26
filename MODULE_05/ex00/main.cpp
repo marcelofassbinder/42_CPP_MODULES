@@ -13,7 +13,7 @@ int main(){
 		std::cout << c << std::endl;
 	}
 	catch(std::exception& e) {
-		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
 std::cout << std::endl;
@@ -23,13 +23,13 @@ std::cout << std::endl;
 		Bureaucrat a("luisito suarez", 0);
 	}
 	catch(std::exception& e) {
-		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 	try {
 		Bureaucrat b("carlitos tevez", 152);
 	}
 	catch(std::exception &e) {
-		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
 std::cout << std::endl;
@@ -43,7 +43,7 @@ std::cout << std::endl;
 		}
 	}
 	catch(std::exception& e) {
-		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
 std::cout << std::endl;
@@ -57,7 +57,7 @@ std::cout << std::endl;
 		}
 	}
 	catch(std::exception& e) {
-		std::cout << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
+		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
 }
