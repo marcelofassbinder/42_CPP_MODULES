@@ -1,17 +1,17 @@
 #include "PresidentialPardonForm.hpp"
 
 //DEFAULT CONSTRUCTOR
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon Form", 25, 5){
+PresidentialPardonForm::PresidentialPardonForm() : Form("Presidential Pardon Form", 25, 5){
 	std::cout << CYAN << "PresidentialPardonForm -> Default constructor called" << RESET << std::endl;
 }
 
 //PARAMETRIZED CONSTRUCTOR
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("Presidential Pardon Form", 25, 5), _target(target) {
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : Form("Presidential Pardon Form", 25, 5), _target(target) {
 	std::cout << CYAN << "PresidentialPardonForm -> Parametrized constructor called" << RESET << std::endl;
 }
 
 //COPY CONSTRUCTOR
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(src), _target(src._target) {
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : Form(src), _target(src._target) {
 	std::cout << CYAN << "PresidentialPardonForm -> Copy constructor called" << RESET << std::endl;
 }
 
@@ -37,7 +37,7 @@ std::string	PresidentialPardonForm::getTarget() const {
 //EXECUTE
 void	PresidentialPardonForm::execute(const Bureaucrat &executor) const {
 	if (!this->getIsSigned())
-		throw AForm::FormIsNotSignedException();
+		throw Form::FormIsNotSignedException();
 	if (executor.getGrade() > this->getGradeToExec())
 		throw Bureaucrat::GradeTooLowException();
 	else {

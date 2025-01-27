@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
 
-int main(){
-{
+void	test1() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 1" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing CORRECT cases..." << RESET << std::endl;
 	try {
 		Bureaucrat messi("Messi", 10);
@@ -24,8 +26,11 @@ int main(){
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test2() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 2" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing OUT OF RANGE constructions..." << RESET << std::endl;
 	try {
 		Form recForm("Recruitment Form", 151, 35);
@@ -42,8 +47,11 @@ std::cout << std::endl;
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test3() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 3" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing FORMS GRADES..." << RESET << std::endl;
 	try {
 		Bureaucrat messi("Messi", 10);
@@ -66,8 +74,11 @@ std::cout << std::endl;
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test4() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 4" << " - - - - - " << RESET << std::endl;
+	
 	std::cout << BOLD YELLOW << "Testing 2 SIGNATURES IN SAME FORM..." << RESET << std::endl;
 	try {
 		Bureaucrat messi("Messi", 10);
@@ -87,4 +98,10 @@ std::cout << std::endl;
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
+
+int main(){
+	test1();
+	test2();
+	test3();
+	test4();
 }

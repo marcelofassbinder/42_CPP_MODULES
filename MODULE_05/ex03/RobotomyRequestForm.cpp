@@ -1,17 +1,17 @@
 #include "RobotomyRequestForm.hpp"
 
 //DEFAULT CONSTRUCTOR
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 45){
+RobotomyRequestForm::RobotomyRequestForm() : Form("Robotomy Request Form", 72, 45){
 	std::cout << CYAN << "RobotomyRequestForm -> Default constructor called" << RESET << std::endl;
 }
 
 //PARAMETRIZED CONSTRUCTOR
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("Robotomy Request Form", 72, 45), _target(target) {
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form("Robotomy Request Form", 72, 45), _target(target) {
 	std::cout << CYAN << "RobotomyRequestForm -> Parametrized constructor called" << RESET << std::endl;
 }
 
 //COPY CONSTRUCTOR
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(src), _target(src._target) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : Form(src), _target(src._target) {
 	std::cout << CYAN << "RobotomyRequestForm -> Copy constructor called" << RESET << std::endl;
 }
 
@@ -37,7 +37,7 @@ std::string	RobotomyRequestForm::getTarget() const {
 //EXECUTE
 void	RobotomyRequestForm::execute(const Bureaucrat &executor) const {
 	if (!this->getIsSigned())
-		throw AForm::FormIsNotSignedException();
+		throw Form::FormIsNotSignedException();
 	if (executor.getGrade() > this->getGradeToExec())
 		throw Bureaucrat::GradeTooLowException();
 	else {

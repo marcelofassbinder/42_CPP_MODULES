@@ -1,17 +1,17 @@
 #include "Form.hpp"
 
 //DEFAULT CONSTRUCTOR
-Form::Form() : _name("Default Form"), _isSigned(false), _gradeToSign(1), _gradeToExec(1) {
-	std::cout << YELLOW << "Form -> Default constructor called" << RESET << std::endl;
+Form::Form() : _name("Default AForm"), _isSigned(false), _gradeToSign(1), _gradeToExec(1) {
+	std::cout << YELLOW << "AForm -> Default constructor called" << RESET << std::endl;
 }
 
 //PARAMETRIZED CONSTRUCTOR
 Form::Form(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) {
+	std::cout << YELLOW << "Form -> Parametrized constructor called" << RESET << std::endl;
 	if (this->_gradeToSign < 1 || this->_gradeToExec < 1)
 		throw GradeTooHighException();
 	else if (this->_gradeToSign > 150 || this->_gradeToExec > 150)
 		throw GradeTooLowException();
-	std::cout << YELLOW << "Form -> Parametrized constructor called" << RESET << std::endl;
 
 }
 
@@ -29,11 +29,6 @@ Form& Form::operator=(const Form &src) {
 	return *this;
 }
 
-//DESTRUCTOR
-Form::~Form() {
-	std::cout << YELLOW << "Form -> Destructor called" << RESET << std::endl;
-}
-
 //EXCEPTIONS
 const char *Form::GradeTooHighException::what() const throw() {
 	return "Form grade is too High!";
@@ -45,6 +40,15 @@ const char *Form::GradeTooLowException::what() const throw() {
 
 const char *Form::FormIsAlreadySignedException::what() const throw() {
 	return "The Form has already been signed!";
+}
+
+const char *Form::FormIsNotSignedException::what() const throw() {
+	return "The Form is not signed!";
+}
+
+//DESTRUCTOR
+Form::~Form() {
+	std::cout << YELLOW << "Form -> Destructor called" << RESET << std::endl;
 }
 
 //GETTERS
@@ -74,13 +78,20 @@ void Form::beSigned(Bureaucrat &bureaucrat) {
 		this->_isSigned = true;
 }
 
+//VIRTUAL PURE FUNCTION
+void	Form::execute(const Bureaucrat &executor) const {
+	(void) executor;
+	/* if (this->getIsSigned() == true && executor.getGrade() <= this->getGradeToExec())
+		//CONTINUAR FUNCAO */
+}
+
 
 //OPERATOR OVERLOAD
-std::ostream &operator<<(std::ostream &out, const Form &form) {
-	out << "FORM NAME: " << form.getName() << std::endl;
-	out << "IS THE FORM SIGNED? " << std::boolalpha << form.getIsSigned() << std::endl;
-	out << "GRADE REQUIRED TO SIGN: " << form.getGradeToSign() << std::endl;
-	out << "GRADE REQUIRED TO EXECUTE: " << form.getGradeToExec() << std::endl;
+std::ostream &operator<<(std::ostream &out, const Form &Form) {
+	out << "Form NAME: " << Form.getName() << std::endl;
+	out << "IS THE Form SIGNED? " << std::boolalpha << Form.getIsSigned() << std::endl;
+	out << "GRADE REQUIRED TO SIGN: " << Form.getGradeToSign() << std::endl;
+	out << "GRADE REQUIRED TO EXECUTE: " << Form.getGradeToExec() << std::endl;
 
 	return out;
 }

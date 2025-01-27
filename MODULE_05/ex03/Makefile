@@ -1,11 +1,11 @@
-SRC = Bureaucrat.cpp AForm.cpp main.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-OBJ = Bureaucrat.o AForm.o ShrubberyCreationForm.o RobotomyRequestForm.o PresidentialPardonForm.o main.o
-NAME = form
+SRC = Bureaucrat.cpp Form.cpp main.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+OBJ = $(SRC:.cpp=.o)
+NAME = intern
 CPP_COMPILER = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
 all : $(NAME)
-
+	
 $(OBJ) : $(SRC)
 	$(CPP_COMPILER) $(CPP_FLAGS) -c $(SRC)
 

@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
 
-int main(){
-{
+void	test1() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 1" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing CORRECT constructions..." << RESET << std::endl;
 	try {
 		Bureaucrat a("luisito suarez", 1);
@@ -16,8 +18,11 @@ int main(){
 		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test2() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 2" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing OUT OF RANGE constructions..." << RESET << std::endl;
 	try {
 		Bureaucrat a("luisito suarez", 0);
@@ -32,8 +37,11 @@ std::cout << std::endl;
 		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test3() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 3" << " - - - - - " << RESET << std::endl;
+
 	std::cout << BOLD YELLOW << "Testing INCREMENT EXCEPTIONS..." << RESET << std::endl;
 	try {
 		Bureaucrat a("superman", 15);
@@ -46,8 +54,11 @@ std::cout << std::endl;
 		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
-std::cout << std::endl;
-{
+
+void	test4() {
+	std::cout << std::endl;
+	std::cout << BOLD << " - - - - - TEST 4" << " - - - - - " << RESET << std::endl;
+	
 	std::cout << BOLD YELLOW << "Testing DECREMENT EXCEPTIONS..." << RESET << std::endl;
 	try {
 		Bureaucrat a("spiderman", 140);
@@ -60,4 +71,9 @@ std::cout << std::endl;
 		std::cerr << RED << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
 	}
 }
+int main(){
+	test1();
+	test2();
+	test3();
+	test4();
 }
