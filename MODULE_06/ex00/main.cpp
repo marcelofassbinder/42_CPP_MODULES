@@ -2,6 +2,9 @@
 
 int main(int argc, char **argv) {
 
-	(void) argc;
-	ScalarConverter::convert(argv[1]);
+	if (argc == 2)
+		ScalarConverter::convert(argv[1]);
+	else
+		std::cerr << "Error! There must be one argument!" << std::endl;
 }
+
