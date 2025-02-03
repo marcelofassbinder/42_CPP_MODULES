@@ -13,6 +13,8 @@ void	test1() {
 		newForm = randomIntern.makeForm("Shrubbery Creation", "home");
 		marcelo.signForm(*newForm);
 		marcelo.executeForm(*newForm);
+
+		delete newForm;
 	}
 	catch(std::exception &e) {
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
@@ -32,6 +34,8 @@ void	test2() {
 		newForm = randomIntern.makeForm("Robotomy Request", "Vini Jr");
 		marcelo.signForm(*newForm);
 		marcelo.executeForm(*newForm);
+
+		delete newForm;
 	}
 	catch(std::exception &e) {
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
@@ -51,6 +55,8 @@ void	test3() {
 		newForm = randomIntern.makeForm("Presidential Pardon", "Mbappe");
 		marcelo.signForm(*newForm);
 		marcelo.executeForm(*newForm);	
+
+		delete newForm;
 	}
 	catch(std::exception &e) {
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
@@ -70,6 +76,8 @@ void	test4() {
 		newForm = randomIntern.makeForm("Non Existant Form", "Mbappe");
 		marcelo.signForm(*newForm);	// this will not be executed
 		marcelo.executeForm(*newForm);	// this will not be executed
+
+		delete newForm;
 	}
 	catch(std::exception &e) {
 		std::cerr << RED BOLD << "EXCEPTION CAUGHT: " << e.what() << RESET << std::endl;
