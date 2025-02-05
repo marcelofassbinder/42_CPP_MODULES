@@ -3,6 +3,12 @@
 
 template <typename T>
 
+void soma(T a, T b) {
+	std::cout << a + b << std::endl;
+}
+
+template <typename T>
+
 void	swap(T &a, T &b) {
 	T swap;
 

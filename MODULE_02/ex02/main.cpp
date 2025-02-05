@@ -53,4 +53,6 @@ int main(void) {
 	std::cout << "\n * * * * MIN/MAX TESTS * * * * \n" << std::endl;
 	std::cout << "min(a,b) = " << Fixed::min(a, b) << std::endl;
 	std::cout << "max(a,b) = " << Fixed::max(a, b) << std::endl;
+
+	std::cout << b + a << std::endl;
 }
