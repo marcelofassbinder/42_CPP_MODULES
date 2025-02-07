@@ -3,29 +3,42 @@
 
 #include <iostream>
 
+#define RED "\e[31m"
+#define BLUE "\e[34m"
+#define GREEN "\e[32m"
+#define YELLOW "\e[33m"
+#define BOLD "\e[1m"
+#define RESET "\e[0m"
+
 template <typename T>
 
 class Array {
 
 	private:
-		T *_elements;
+		T 				*_elements;
+		unsigned int	_size;
 
 	public:
+	//ORTHODOX CANONICAL FORM
 		Array();
 		Array(unsigned int n);
 		Array(const Array&);
 		Array& operator=(const Array&);
 		~Array();
 
-		int	size(void) const;
-		T& getElement(int index) const;
+	//METHODS
+		unsigned int	size(void) const;
+		T& 				getElement(unsigned int index) const;
+		void			printArray(void) const;
 
-		class NoExistantElement : public std::exception {
+	//OPERATOR OVERLOAD
+		T& 				operator[](unsigned int index) const;
+
+	//EXCEPTION
+		class NonexistentElement : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
-		
-		T& operator[](unsigned int index) const;
 };
 
 #include "Array.tpp"

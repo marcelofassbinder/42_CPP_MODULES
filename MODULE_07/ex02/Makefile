@@ -1,6 +1,6 @@
 SRC = main.cpp
 OBJ = main.o
-NAME = iter
+NAME = array
 CPP_COMPILER = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
