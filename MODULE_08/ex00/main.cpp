@@ -11,13 +11,13 @@ void	printContainerElements(T container) {
 
 	std::cout << BOLD << "CONTAINER ELEMENTS -> ";
 	for (it = container.begin(); it != container.end(); ++it){
-		std::cout << YELLOW << *it << " ";
+		std::cout << BLUE << *it << " ";
 	}
 	std::cout << RESET << std::endl;
 }
 
 void	testVector(void) {
-	std::cout << BLUE BOLD << "\n- - - - - TEST 1: VECTOR - - - - - \n" << RESET << std::endl;
+	std::cout << YELLOW BOLD << "\n- - - - - TEST 1: VECTOR - - - - - \n" << RESET << std::endl;
 
 	std::vector<int> a;
 	
@@ -41,7 +41,7 @@ void	testVector(void) {
 }
 
 void	testList(void) {
-	std::cout << BLUE BOLD << "\n- - - - - TEST 2: LIST - - - - - \n" << RESET << std::endl;
+	std::cout << YELLOW BOLD << "\n- - - - - TEST 2: LIST - - - - - \n" << RESET << std::endl;
 	
 	std::list<int> a;
 
@@ -63,7 +63,7 @@ void	testList(void) {
 }
 
 void	testDeque(void) {
-	std::cout << BLUE BOLD << "\n- - - - - TEST 3: DEQUE - - - - - \n" << RESET << std::endl;
+	std::cout << YELLOW BOLD << "\n- - - - - TEST 3: DEQUE - - - - - \n" << RESET << std::endl;
 	
 	std::deque<int> a;
 

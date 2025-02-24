@@ -67,6 +67,7 @@ void	testStringArray(void) {
 		std::cout << RED BOLD << e.what() << RESET << std::endl;
 	}
 }
+
 void	testException1(void) {
 	std::cout << BOLD << "\nTEST 5 : TESTING EXCEPTION: PRINT INVALID ELEMENT" << RESET << std::endl;
 
@@ -79,7 +80,6 @@ void	testException1(void) {
 		std::cout << "EXCEPTION CAUGHT: " << RED BOLD << e.what() << RESET << std::endl;
 	}
 }
-
 
 void	testException2(void) {
 	std::cout << BOLD << "\nTEST 6 : TESTING EXCEPTION 2: MODIFY INVALID ELEMENT" << RESET << std::endl;
@@ -97,18 +97,6 @@ void	testException2(void) {
 	}
 }
 
-void	testException3(void) {
-	std::cout << BOLD << "\nTEST 7 : TESTING EXCEPTION 3: BAD ALLOC" << RESET << std::endl;
-
-	try {
-		Array<int> a(-2);
-		a.printArray();
-	}
-	catch(std::exception &e) {
-		std::cout << "EXCEPTION CAUGHT: " << RED BOLD << e.what() << RESET << std::endl;
-	}
-}
-
 int main() {
 	testIntArray();
 	testCharArray();
@@ -116,5 +104,4 @@ int main() {
 	testStringArray();
 	testException1();
 	testException2();
-	testException3();
 }

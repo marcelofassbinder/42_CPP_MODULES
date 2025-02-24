@@ -3,7 +3,7 @@
 
 template <typename T>
 
-void soma(T a, T b) {
+void soma(T &a, T &b) {
 	std::cout << a + b << std::endl;
 }
 
@@ -23,8 +23,7 @@ T& min(T &a, T&b) {
 
 	if (a < b)
 		return a;
-	else
-		return b;
+	return b;
 }
 
 template <typename T>
@@ -33,8 +32,7 @@ T& max(T &a, T&b) {
 
 	if (a > b)
 		return a;
-	else
-		return b;
+	return b;
 }
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "AMateria.hpp"
 
-//SINLETON DESIGN PATTERN - A way to access always the same instance in all the program
+//SINGLETON DESIGN PATTERN - A way to access always the same instance in all the program
 class AMateria;
 
 typedef struct s_ListOfMaterias{

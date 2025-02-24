@@ -67,6 +67,8 @@ int main() {
 		
 		b->displayBrainIdeas();
 
+
+
 		delete(a);
 		delete(b);
 		delete(temp);

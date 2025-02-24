@@ -1,7 +1,6 @@
 #include "DiamondTrap.hpp"
 
 int main(void) {
-	
 	{
 		std::cout << BOLD "\n - - - - REGULAR TESTS - - - - \n" RESET << std::endl;
 		ClapTrap ney("NEYMAR");
@@ -30,5 +29,4 @@ int main(void) {
 		dida = kaka;
 		dida.whoAmI();
 	}
-
 }

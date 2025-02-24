@@ -3,6 +3,13 @@
 #include <list>
 #include "MutantStack.hpp"
 
+#define RED "\e[31m"
+#define BLUE "\e[34m"
+#define GREEN "\e[32m"
+#define YELLOW "\e[33m"
+#define BOLD "\e[1m"
+#define RESET "\e[0m"
+
 void	testSubject(void) {
 	std::cout << "\n- - - - - TEST 1: Subject - - - - - \n" << std::endl;
 	
@@ -66,38 +73,66 @@ void	testSubjectList(void) {
 	}
 }
 
+void	testUnderlyingContainerVector() {
+	std::cout << "\n- - - - - TEST 3: Creating mutant stack with a vector as underlying container - - - - - \n" << std::endl;
+
+	MutantStack<char, std::vector<char> > ms;
+
+	ms.push('m');
+	ms.push('a');
+	ms.push('r');
+	ms.push('c');
+	ms.push('e');
+	ms.push('l');
+	ms.push('o');
+
+	ms.print();
+
+	MutantStack<char, std::vector<char> >::iterator itB = ms.begin();
+	MutantStack<char, std::vector<char> >::iterator itE = ms.end();
+
+	std::cout << "iterator begin = " << *itB << std::endl;
+	std::cout << "iterator (end - 1) = " << *(itE - 1) << std::endl;
+
+	std::cout << "top element = " << ms.top() << std::endl;
+
+}
+
+void	testIterators() {
+	std::cout << "\n- - - - - TEST 3: Testing all types of iterators - - - - - \n" << std::endl;
+
+	MutantStack<std::string> ms;
+
+	ms.push("first");
+	ms.push("second");
+	ms.push("third");
+
+	ms.print();
+
+	MutantStack<std::string>::iterator itB = ms.begin();
+	MutantStack<std::string>::iterator itE = ms.end();
+	MutantStack<std::string>::const_iterator constItB = ms.cbegin();
+	MutantStack<std::string>::const_iterator constItE = ms.cend();
+	MutantStack<std::string>::reverse_iterator revItB = ms.rbegin();
+	MutantStack<std::string>::reverse_iterator revItE = ms.rend();
+
+	std::cout <<GREEN<< "\niterator begin = " <<BOLD<< *itB << RESET << std::endl;
+	std::cout <<YELLOW<< "const iterator begin = " <<BOLD<< *constItB << RESET << std::endl;
+	std::cout <<BLUE<< "reverse iterator begin = " <<BOLD<< *revItB << RESET << std::endl;
+	std::cout <<GREEN<< "iterator (end - 1) = " <<BOLD<< *(itE - 1) << RESET << std::endl;
+	std::cout <<YELLOW<< "const iterator (end - 1) = " <<BOLD<< *(constItE - 1) << RESET << std::endl;
+	std::cout <<BLUE<< "reverse iterator (end - 1) = " <<BOLD<< *(revItE - 1) << RESET << std::endl;
+}
+
 int main() {
 
 	testSubject();
 	testSubjectList();
+	testUnderlyingContainerVector();
+	testIterators();
 
 	// test const it
 	// test reverse it
 	// test const_reverse it
 	//	test receiving another container NOT DEQUE
-
-/* 	MutantStack<int, std::vector<int>> a;
-
-	a.push(2);
-	a.push(4);
-	a.push(6);
-	a.push(8);
-	a.push(10);
-
-	a.print(); */
-/* 
-	MutantStack<int, std::vector<int>>::iterator itB = a.begin();
-	MutantStack<int, std::vector<int>>::iterator itE = a.end();
-
-	std::cout << "it begin = " << *itB << std::endl;
-	std::cout << "it end = " << *(itE - 1) << std::endl;
-	
-	MutantStack<int, std::vector<int>> b;
-	b = a;
-
-	b.print();
-
-	MutantStack<int, std::vector<int>> c(b);
-	c.print();
- */
 } 
