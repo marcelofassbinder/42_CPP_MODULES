@@ -31,6 +31,9 @@ void	BitcoinExchange::readData() {
 }
 
 std::pair<std::string, std::string> extractDateValue(std::string &line) {
+	
+	if (line.find("|") == line.npos) // if did not encounter pipe
+		return (std::pair<std::string, std::string>("", ""));
 	std::string date, value;
 	std::string::iterator it;
 	int pipePos = 0;
@@ -39,19 +42,14 @@ std::pair<std::string, std::string> extractDateValue(std::string &line) {
 	date.assign(line, 0, pipePos);
 	value.assign(line, pipePos + 1, line.length());
 	
-	std::pair<std::string, std::string> newPair;
-	newPair.first = date;
-	newPair.second = value;
-	return newPair;
+	return (std::pair<std::string, std::string> (date, value));
 }
 
-void	BitcoinExchange::searchInMap(std::string &line) {
+void	BitcoinExchange::convertBtc(std::pair<std::string, std::string> &dateValue) {
 
 	std::string date;
 	float value, result, rate;
-	std::pair<std::string, std::string> dateValue;
 
-	dateValue = extractDateValue(line);
 	date = dateValue.first;
 	date.erase(date.length() - 1); //take out the space at the end
 	value = atof(dateValue.second.c_str());
@@ -76,9 +74,13 @@ void	BitcoinExchange::calculateBtc(const char *inputFile) {
 	if (line.compare("date | value") != 0)
 		printError("'date | value' not find at first line", 1);
 	while(std::getline(file, line)) {
-		if (line == "date | value" || !isLineValid(line))
-			continue ;
-		BitcoinExchange::searchInMap(line);
+		std::pair<std::string, std::string> dateValue = extractDateValue(line);
+		if (!checkDate(dateValue.first))
+			printError("bad input => " + line, 0);
+		else if (!checkValue(dateValue.second))
+			printError("not a valid number.", 0);
+		else
+			BitcoinExchange::convertBtc(dateValue);
 	}
 	file.close();
 }	
@@ -100,6 +102,12 @@ bool	strIsNumeric(std::string &str) {
 	return true;
 }
 
+bool	isLeapYear(int year) {
+	if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+		return true;
+	return false;
+}
+
 bool	checkDate(std::string &date) {
 	if (date.length() != 11 || countChar(date, '-') != 2)
 		return false;
@@ -115,11 +123,16 @@ bool	checkDate(std::string &date) {
 	dayInt = atoi(day.c_str());
 	if (monthInt == 0 || monthInt > 12 || dayInt == 0 || dayInt > 31)
 		return false;
+	if (dayInt == 31 && (monthInt != 1 && monthInt != 3 && monthInt != 5 &&
+			monthInt != 7 && monthInt != 8 && monthInt != 10 && monthInt != 12))
+			return false; // months with 31 days check
+	if (monthInt == 2 && (dayInt > 29 || (dayInt == 29 && !isLeapYear(yearInt))))
+		return false; //february and leap year check
 	return true;
 }
 
 bool	checkValue(std::string &value) {
-	if ((countChar(value, '.') != 0 && countChar(value, '.') != 1) || countChar(value, ' ') != 1)
+	if ((countChar(value, '.') != 0 && countChar(value, '.') != 1) || countChar(value, ' ') != 1 || value[0] != ' ')
 		return false;
 	for (std::string::iterator it = value.begin(); it != value.end(); it++) {
 		if (!isdigit(*it) && *it != '.' && *it != ' ')
@@ -128,16 +141,6 @@ bool	checkValue(std::string &value) {
 	double valueDouble = atof(value.c_str());
 	if (valueDouble < 0 || valueDouble > 1000)
 		return false;
-	return true;
-}
-
-
-bool	isLineValid(std::string &line) {
-	std::pair<std::string, std::string> dateValue = extractDateValue(line);
-	if (!checkDate(dateValue.first))
-		return (printError("bad input => " + line, 0),false);
-	if (!checkValue(dateValue.second))
-		return (printError("not a valid number.", 0),false);
 	return true;
 }
 
