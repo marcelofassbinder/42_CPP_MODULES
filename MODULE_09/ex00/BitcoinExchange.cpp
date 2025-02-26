@@ -59,7 +59,7 @@ void	BitcoinExchange::convertBtc(std::pair<std::string, std::string> &dateValue)
 		it--;
 	rate = it->second;
 	result = value * rate;
-	std::cout  << date << " => " << value << " = " <<  result << std::endl;
+	std::cout << date << " => " << value << " = " <<  result << std::endl;
 }
 
 void	BitcoinExchange::calculateBtc(const char *inputFile) {
