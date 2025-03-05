@@ -70,6 +70,43 @@ void	swapBlocks(std::vector<int> &v, int pos, int pos_to_swap, int blockSize) {
 }
 
 
+std::vector<int> initMainChain(std::vector<int> &v, size_t blockSize) {
+	//inicia com b1, a1, e depois o resto dos a's
+	std::vector<int> mainChain;
+
+	//insert b1
+	size_t posB1 = blockSize / 2;
+	size_t i = 0;
+	while (i < posB1) {
+		mainChain.push_back(v[i++]);
+	}
+	//insert a's
+	size_t posA = 0;
+	while (posA < v.size()) {
+		while(i < posA) {
+			mainChain.push_back(v[i++]);
+		}
+		posA = i + blockSize;
+	}
+	std::cout << "main" << std::endl;
+	printVector(mainChain);
+	return mainChain;
+
+}
+//testar pendchain
+std::vector<int> initPendChain(std::vector<int> &v, size_t blockSize) {
+	//insert b's starting from b2
+	std::vector<int> pendChain;
+	pendChain.clear();
+	
+	size_t posB2 = blockSize * 3 / 2;
+	if (posB2 > v.size())
+		return pendChain;
+	size_t i = posB2 - blockSize / 2;
+	while (i < posB2)
+		pendChain.push_back(v[i++]);
+}
+
 std::vector<int> mergeInsertionSort(std::vector<int> &v) {
 
 	static size_t blockSize = 2; //quantos numeros cada par possui
@@ -88,8 +125,13 @@ std::vector<int> mergeInsertionSort(std::vector<int> &v) {
 	}
 	blockSize *= 2;
 	mergeInsertionSort(v);
-	std::cout << "DEPOIS DE TODA A RECURSIVIDADE" << std::endl;
-	printVector(v);
+	std::cout << "blockSize = " << blockSize << std::endl;
+	std::vector<int> mainChain, pendChain;
+	mainChain = initMainChain(v, blockSize);
+	
+	/* std::cout << "DEPOIS DE TODA A RECURSIVIDADE" << std::endl;
+	printVector(v); */
+	blockSize /= 2;
 	return v;
 
 }
