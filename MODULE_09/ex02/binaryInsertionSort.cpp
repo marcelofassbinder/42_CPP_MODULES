@@ -7,7 +7,7 @@
 
 //iterar o array do segundo ao ultimo elemento
 
-int binarySearch(std::vector<int> &v, int toSearch) {
+int binarySearch(std::vector<int> &v, int toInsert) {
 
 	int size, posLow, posHigh, posMid;
 
@@ -17,17 +17,12 @@ int binarySearch(std::vector<int> &v, int toSearch) {
 	posHigh = size - 1;
 	while(posLow <= posHigh) {
 		posMid = posLow + ((posHigh - posLow) / 2);
-		if (toSearch == v[posMid]) {
-			return posMid;
-		}
-		if (toSearch > v[posMid]) {
-			posLow = posMid + 1;
-		}
-		if (toSearch < v[posMid]) {
+		if (toInsert < v[posMid])
 			posHigh = posMid - 1;
-		}
+		else
+			posLow = posMid + 1;
 	}
-	return -1;
+	return posLow;
 }
 
 
@@ -51,9 +46,12 @@ void	printVector(std::vector<int> v) {
 int main() {
 
 	std::vector<int> a = {1, 4, 7, 10};
-	std::vector<int>::iterator it = std::lower_bound(a.begin(), a.end(), 8);
-	a.insert(it, 8);
 	printVector(a);
+	int i = binarySearch(a, 9);
+	std::cout<<"pos to insert = " << i << std::endl;
+	a.insert((a.begin() + i), 9);
+	printVector(a);
+
 	/* std::vector<int> a = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
 	printVector(a);
 	int pos, search;
