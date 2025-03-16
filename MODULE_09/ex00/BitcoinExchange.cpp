@@ -17,7 +17,7 @@ void	BitcoinExchange::readData() {
 
 	std::ifstream file("data.csv");
 	if (!file)
-		printError("could not open file.", 1);
+		throw(std::runtime_error("could not open file."));
 	std::string line, key, value;
 	while(std::getline(file, line)) {
 		if (line.find_first_of("0123456789") == line.npos)
@@ -68,17 +68,17 @@ void	BitcoinExchange::calculateBtc(const char *inputFile) {
 	
 	std::ifstream file(inputFile);
 	if (!file)
-		printError("could not open file.", 1);
+		throw(std::runtime_error("could not open file."));
 	std::string line;
 	std::getline(file, line);
 	if (line.compare("date | value") != 0)
-		printError("'date | value' not find at first line", 1);
+		throw(std::runtime_error("'date | value' not find at first line"));
 	while(std::getline(file, line)) {
 		std::pair<std::string, std::string> dateValue = extractDateValue(line);
 		if (!checkDate(dateValue.first))
-			printError("bad input => " + line, 0);
+			throw(std::runtime_error("bad input => " + line));
 		else if (!checkValue(dateValue.second))
-			printError("not a valid number.", 0);
+			throw(std::runtime_error("not a valid number."));
 		else
 			BitcoinExchange::convertBtc(dateValue);
 	}
@@ -142,10 +142,4 @@ bool	checkValue(std::string &value) {
 	if (valueDouble < 0 || valueDouble > 1000)
 		return false;
 	return true;
-}
-
-void	printError(const std::string& error, bool exitFlag) {
-	std::cerr << "Error: " << error << std::endl;
-	if (exitFlag)
-		exit(EXIT_FAILURE);
 }

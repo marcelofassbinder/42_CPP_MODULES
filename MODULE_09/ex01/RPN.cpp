@@ -22,7 +22,7 @@ void RPN::calculate(const char *args) {
 	for (std::string::iterator it = input.begin(); it != input.end(); it++) {
 		if (std::isdigit(*it))
 			RPN::_stack.push(*it - '0');
-		if (validOperators.find(*it) != validOperators.npos) {
+		else if (validOperators.find(*it) != validOperators.npos) {
 			if (RPN::_stack.size() < 2)
 				return (printError("Invalid synthax"));
 			doOperation(*it, RPN::_stack);
@@ -70,6 +70,6 @@ bool	checkInput(std::string input) {
 	return true;
 }
 
-void	printError(std::string error) {
+void	printError(std::string &error) {
 	std::cerr << "Error: " << error << std::endl;
 }
