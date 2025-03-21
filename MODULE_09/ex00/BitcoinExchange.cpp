@@ -16,10 +16,15 @@ BitcoinExchange::~BitcoinExchange() {}
 int	BitcoinExchange::readData() {
 
 	std::ifstream file("data.csv");
+<<<<<<< HEAD
 	if (!file) {
 		printError("could not open file.");
 		return 0;
 	}
+=======
+	if (!file)
+		throw(std::runtime_error("could not open file."));
+>>>>>>> 5014ad7167e8418e7a4d054504164c7f2b246a1a
 	std::string line, key, value;
 	while(std::getline(file, line)) {
 		if (line.find_first_of("0123456789") == line.npos)

@@ -77,6 +77,6 @@ bool	checkInput(std::string input) {
 	return true;
 }
 
-void	printError(std::string error) {
+void	printError(std::string &error) {
 	std::cerr << "Error: " << error << std::endl;
 }
