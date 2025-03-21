@@ -3,7 +3,6 @@
 int main(int argc, char **argv) {
 
 	if (argc != 2)
-		printError("Invalid argument.", 1);
+		return (printError("Invalid number of arguments"), 1);
 	BitcoinExchange::calculateBtc(argv[1]);
-
 }

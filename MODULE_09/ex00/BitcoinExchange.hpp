@@ -18,14 +18,14 @@ class BitcoinExchange {
 		~BitcoinExchange();
 
 	public:
-		static void	calculateBtc(const char* inputFile);
-		static void	readData();
+		static int	calculateBtc(const char* inputFile);
+		static int	readData();
 		static void	convertBtc(std::pair<std::string, std::string> &dateValue);
 };
 
 //AUXILIAR FUNCTIONS
 std::pair<std::string, std::string>	extractDateValue(std::string &line);
-void								printError(const std::string& error, bool exitFlag);
+void								printError(const std::string error);
 int									countChar(std::string &str, char c);
 bool								strIsNumeric(std::string &str);
 bool								checkDate(std::string &date);

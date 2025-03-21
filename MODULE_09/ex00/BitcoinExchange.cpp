@@ -13,11 +13,13 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &src) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-void	BitcoinExchange::readData() {
+int	BitcoinExchange::readData() {
 
 	std::ifstream file("data.csv");
-	if (!file)
-		printError("could not open file.", 1);
+	if (!file) {
+		printError("could not open file.");
+		return 0;
+	}
 	std::string line, key, value;
 	while(std::getline(file, line)) {
 		if (line.find_first_of("0123456789") == line.npos)
@@ -28,6 +30,7 @@ void	BitcoinExchange::readData() {
 		BitcoinExchange::_map.insert(newPair);
 	}
 	file.close();
+	return 1;
 }
 
 std::pair<std::string, std::string> extractDateValue(std::string &line) {
@@ -62,27 +65,33 @@ void	BitcoinExchange::convertBtc(std::pair<std::string, std::string> &dateValue)
 	std::cout << date << " => " << value << " = " <<  result << std::endl;
 }
 
-void	BitcoinExchange::calculateBtc(const char *inputFile) {
+int	BitcoinExchange::calculateBtc(const char *inputFile) {
 	
-	BitcoinExchange::readData();
+	if (!BitcoinExchange::readData())
+		return 0;
 	
 	std::ifstream file(inputFile);
-	if (!file)
-		printError("could not open file.", 1);
+	if (!file) {
+		printError("could not open file.");
+		return 0;
+	}
 	std::string line;
 	std::getline(file, line);
-	if (line.compare("date | value") != 0)
-		printError("'date | value' not find at first line", 1);
+	if (line.compare("date | value") != 0) {
+		printError("'date | value' not find at first line");
+		return 0;
+	}
 	while(std::getline(file, line)) {
 		std::pair<std::string, std::string> dateValue = extractDateValue(line);
 		if (!checkDate(dateValue.first))
-			printError("bad input => " + line, 0);
+			printError("bad input => " + line);
 		else if (!checkValue(dateValue.second))
-			printError("not a valid number.", 0);
+			printError("not a valid number.");
 		else
 			BitcoinExchange::convertBtc(dateValue);
 	}
 	file.close();
+	return 1;
 }	
 
 int	countChar(std::string &str, char c) {
@@ -144,8 +153,6 @@ bool	checkValue(std::string &value) {
 	return true;
 }
 
-void	printError(const std::string& error, bool exitFlag) {
+void	printError(const std::string error) {
 	std::cerr << "Error: " << error << std::endl;
-	if (exitFlag)
-		exit(EXIT_FAILURE);
 }

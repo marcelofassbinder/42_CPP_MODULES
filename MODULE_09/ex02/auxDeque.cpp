@@ -1,7 +1,5 @@
 #include "PmergeMe.hpp"
 
-//testar DEQUE
-
 void	swapBlocks(std::deque<int> &d, int elementSize) {
 	
 	size_t pos = elementSize - 1;

@@ -22,7 +22,7 @@ void RPN::calculate(const char *args) {
 	for (std::string::iterator it = input.begin(); it != input.end(); it++) {
 		if (std::isdigit(*it))
 			RPN::_stack.push(*it - '0');
-		if (validOperators.find(*it) != validOperators.npos) {
+		else if (validOperators.find(*it) != validOperators.npos) {
 			if (RPN::_stack.size() < 2)
 				return (printError("Invalid synthax"));
 			doOperation(*it, RPN::_stack);
@@ -36,7 +36,7 @@ void RPN::calculate(const char *args) {
 
 void	doOperation(char op, std::stack<int> &s) {
 	
-	int n1, n2, result;
+	long	n1, n2, result;
 	n1 = s.top();
 	s.pop();
 	n2 = s.top();
@@ -54,17 +54,24 @@ void	doOperation(char op, std::stack<int> &s) {
 			result = n2 * n1;	
 			break;
 		case '/':
+			if (n1 == 0) {
+				std::cerr << "Division per zero is not possible!" << std::endl;
+				return ;
+			}
 			result = n2 / n1;	
 			break;
 	}
-	s.push(result);
+	if (result > std::numeric_limits<int>::max())
+		std::cerr << "The result must fit the integer range" << std::endl;
+	else
+		s.push(static_cast<int>(result));
 }
 
 bool	checkInput(std::string input) {
 	//cannot be something different from numbers, operators or spaces. cannot be two sequent digits
 	std::string validOperators("+-/*");
 	for (std::string::iterator it = input.begin(); it != input.end(); it++) {
-		if ((!std::isdigit(*it) && !std::isspace(*it) && validOperators.find(*it) == validOperators.npos) || (std::isdigit(*it) && std::isdigit(*(it - 1))))
+		if ((!std::isdigit(*it) && !std::isspace(*it) && validOperators.find(*it) == validOperators.npos) || (std::isdigit(*it)  && it != input.begin() && std::isdigit(*(it - 1))))
 			return false;
 	}
 	return true;
